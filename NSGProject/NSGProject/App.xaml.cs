@@ -2,6 +2,7 @@
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using NSGProject.Views;
+using Esri.ArcGISRuntime;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace NSGProject
@@ -13,8 +14,8 @@ namespace NSGProject
         {
             InitializeComponent();
 
-
-            MainPage = new MainPage();
+            ArcGISRuntimeEnvironment.Initialize();
+            MainPage = new NavigationPage(  new MainPage());//new MainMenuPage();  //
         }
 
         protected override void OnStart()

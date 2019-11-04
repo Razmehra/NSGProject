@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NSGProject.Views.AssignedWorkListView" NavigationPage.HasNavigationBar="False" NavigationPage.HasBackButton="True"
+             NavigationPage.BackButtonTitle="Assigned Work List"
+             Title="Assigned Work List" >
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView x:Name="WorkListView" HasUnevenRows="True" ItemSelected="WorkListView_ItemSelected" >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell >
+                            <StackLayout Padding="5" Margin="0" BackgroundColor="LightGray">
+                                <Frame BackgroundColor="GhostWhite" Padding="5" CornerRadius="10">
+                                    <Grid VerticalOptions="FillAndExpand" RowSpacing="2">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="50" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label Text="Work Order :" Grid.Row="0" Grid.Column="0" TextColor="Black" FontSize="12" VerticalOptions="CenterAndExpand"/>
+                                        <Label Text="{Binding WorkOrder}" Grid.Row="0" Grid.Column="1" TextColor="Black" FontSize="12" VerticalOptions="CenterAndExpand"/>
+                                        <Label Text="Work Name :" Grid.Row="1" Grid.Column="0" TextColor="Black" FontSize="12" VerticalOptions="CenterAndExpand"/>
+                                        <Label Text="{Binding WorkName}" Grid.Row="1" Grid.Column="1" TextColor="Black" FontSize="12" VerticalOptions="CenterAndExpand"/>
+                                        <Label Text="M/S :" Grid.Row="2" Grid.Column="0" TextColor="Black" FontSize="12" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand"/>
+                                        <Label Text="{Binding M_S}" Grid.Row="2" Grid.Column="1" TextColor="Black" FontSize="12" VerticalOptions="FillAndExpand"/>
+                                        <Frame Grid.Row="0" Grid.RowSpan="3" Grid.Column="2" BackgroundColor="CadetBlue" 
+                                               Margin="0" Padding="0" HeightRequest="50" WidthRequest="50"
+                                           CornerRadius="25" BorderColor="Red" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                                                <Label Text="{Binding WorkIndicator}" TextColor="FloralWhite" FontSize="11" FontAttributes="Bold"
+                                                   HorizontalOptions="Center" VerticalOptions="Center"/>
+                                        </Frame>
+                                        <Label Text="{Binding FBPInfo}" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" TextColor="Black" FontSize="12" FontAttributes="Bold" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                                        
+                                    </Grid>
+                                </Frame>
+
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

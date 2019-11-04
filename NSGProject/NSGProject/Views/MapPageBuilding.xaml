@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:esriUI="clr-namespace:Esri.ArcGISRuntime.Xamarin.Forms;assembly=Esri.ArcGISRuntime.Xamarin.Forms"
+             xmlns:local="clr-namespace:NSGProject.ViewModels"
+             x:Class="NSGProject.Views.MapPageBuilding"  NavigationPage.HasNavigationBar="False"
+             NavigationPage.HasBackButton="False"
+             BackgroundColor="GhostWhite">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:MapViewModel x:Key="MapViewModel" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="150"/>
+                </Grid.RowDefinitions>
+
+                <StackLayout Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                             HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+                             Padding="5" Margin="0" BackgroundColor="LightGray"
+                             >
+                    <Frame BackgroundColor="GhostWhite" Padding="5" CornerRadius="10" HasShadow="True" BorderColor="Black">
+                        <Grid VerticalOptions="FillAndExpand" RowSpacing="2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="50" />
+                            </Grid.ColumnDefinitions>
+
+                            <Label Text="Work Order :" Grid.Row="0" Grid.Column="0" TextColor="Black" FontSize="12" VerticalOptions="CenterAndExpand"/>
+                            <Label x:Name="txtWorkOrder" Text="{Binding workitem.WorkOrder}" Grid.Row="0" Grid.Column="1" TextColor="Black" FontSize="12" VerticalOptions="CenterAndExpand"/>
+                            <Label Text="Work Name :" Grid.Row="1" Grid.Column="0" TextColor="Black" FontSize="12" VerticalOptions="CenterAndExpand"/>
+                            <Label x:Name="txtWorkName" Text="{Binding WorkName}" Grid.Row="1" Grid.Column="1" TextColor="Black" FontSize="12" VerticalOptions="CenterAndExpand"/>
+                            <Label Text="M/S :" Grid.Row="2" Grid.Column="0" TextColor="Black" FontSize="12" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand"/>
+                            <Label x:Name="txtM_S" Text="{Binding M_S}" Grid.Row="2" Grid.Column="1" TextColor="Black" FontSize="12" VerticalOptions="FillAndExpand"/>
+                            <Label x:Name="txtFBPInfo" Text="{Binding FBPInfo}" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" TextColor="Black" FontSize="12" FontAttributes="Bold" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                        </Grid>
+                    </Frame>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <!--MAP View-->
+                        <esriUI:MapView x:Name="MapView" Grid.Row="0" Grid.Column="0"   Map="{Binding Map, Source={StaticResource MapViewModel}}" />
+
+                    </Grid>
+
+
+                </StackLayout>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

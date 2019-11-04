@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NSGProject.Views.MainMenuPage" Title="Navigation Page" BackgroundColor="GhostWhite">
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView x:Name="MenuListView" HasUnevenRows="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout>
+                                <Button Text="{Binding MenuTitle}" CommandParameter="{Binding id}" 
+                                        FontSize="12" TextColor="Black" Clicked="Button_Clicked"
+                                        HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" />
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
