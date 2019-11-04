@@ -5,6 +5,7 @@ using Esri.ArcGISRuntime.Xamarin.Forms;
 using NSGProject.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -15,14 +16,14 @@ using Xamarin.Forms.Xaml;
 
 namespace NSGProject.Views
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class MapPageBuilding : ContentPage
-	{
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class MapPageBuilding : ContentPage
+    {
         public AssignedWorks workitem { get; set; }
 
-		public MapPageBuilding ()
-		{
-			InitializeComponent ();
+        public MapPageBuilding()
+        {
+            InitializeComponent();
             Initialize();
 
         }
@@ -51,6 +52,8 @@ namespace NSGProject.Views
             // Get current assembly that contains the image
             currentAssembly = Assembly.GetExecutingAssembly();
 #endif
+
+            var xxA = currentAssembly.GetManifestResourceNames();
             // var assembly = typeof(EmbeddedImages).GetTypeInfo().Assembly;
             foreach (var res in currentAssembly.GetManifestResourceNames())
             {
@@ -59,8 +62,9 @@ namespace NSGProject.Views
             }
             // Get image as a stream from the resources
             // Picture is defined as EmbeddedResource and DoNotCopy
-            var resourceStream = currentAssembly.GetManifestResourceStream(
-                "pin_star_blue.png");
+            var resourceStream = currentAssembly.GetManifestResourceStream("pin_star_blue.png");
+            // StreamImageSource imgsource = new StreamImageSource();
+            //Stream stream = "pin_star_blue.png";
 
             // Create new symbol using asynchronous factory method from stream
             PictureMarkerSymbol pinSymbol = await PictureMarkerSymbol.CreateAsync(resourceStream);
@@ -77,13 +81,13 @@ namespace NSGProject.Views
             overlay.Graphics.Add(pinGraphic);
         }
 
-        public void RefreshPage( AssignedWorks assignedWork)
+        public void RefreshPage(AssignedWorks assignedWork)
         {
             workitem = assignedWork;
             txtWorkOrder.Text = workitem.WorkOrder.ToString();
             txtWorkName.Text = workitem.WorkName;
             txtM_S.Text = workitem.M_S;
-            txtFBPInfo.Text= $"Fin. P: {workitem.Fin}% | BoQ P: {workitem.BoQ}% | Phy. P: {workitem.Phy}%";
+            txtFBPInfo.Text = $"Fin. P: {workitem.Fin}% | BoQ P: {workitem.BoQ}% | Phy. P: {workitem.Phy}%";
 
         }
 
