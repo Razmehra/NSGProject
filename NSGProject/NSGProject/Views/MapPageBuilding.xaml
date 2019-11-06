@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:esriUI="clr-namespace:Esri.ArcGISRuntime.Xamarin.Forms;assembly=Esri.ArcGISRuntime.Xamarin.Forms"
              xmlns:local="clr-namespace:NSGProject.ViewModels"
-             x:Class="NSGProject.Views.MapPageBuilding"  NavigationPage.HasNavigationBar="False"
+             x:Class="NSGProject.Views.MapPageBuilding" 
+             NavigationPage.HasNavigationBar="False"
              NavigationPage.HasBackButton="False"
              BackgroundColor="GhostWhite">
 
@@ -14,8 +15,8 @@
     </ContentPage.Resources>
 
     <ContentPage.Content>
-        <StackLayout>
-            <Grid>
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
@@ -23,9 +24,9 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
-                    <RowDefinition Height="150"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-
+<!--Top Panel-->
                 <StackLayout Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
                              HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
                              Padding="5" Margin="0" BackgroundColor="LightGray"
@@ -33,7 +34,6 @@
                     <Frame BackgroundColor="GhostWhite" Padding="5" CornerRadius="10" HasShadow="True" BorderColor="Black">
                         <Grid VerticalOptions="FillAndExpand" RowSpacing="2">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
@@ -53,21 +53,45 @@
                             <Label x:Name="txtFBPInfo" Text="{Binding FBPInfo}" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" TextColor="Black" FontSize="12" FontAttributes="Bold" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
                         </Grid>
                     </Frame>
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <!--MAP View-->
-                        <esriUI:MapView x:Name="MapView" Grid.Row="0" Grid.Column="0"   Map="{Binding Map, Source={StaticResource MapViewModel}}" />
-
-                    </Grid>
-
-
                 </StackLayout>
+<!--Map Panel-->
+                <esriUI:MapView x:Name="MapView" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"  Map="{Binding Map, Source={StaticResource MapViewModel}}" 
+                                        HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+<!--Bottom Panel-->                
+                <Frame Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+                       BorderColor="Black" CornerRadius="10" Padding="3,0,3,0" Margin="0,-5,0,-10" BackgroundColor="LightGray">
+                    <StackLayout  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+                             BackgroundColor="Transparent" Spacing="0" Margin="0">
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Padding="2" BackgroundColor="Transparent" >
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="BTN_Ex_Col_Clicked" />
+                                </StackLayout.GestureRecognizers>
+                                <Label Text="Action Items" TextColor="Black" FontSize="15" Margin="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                                <ImageButton x:Name="BTN_Ex_Col" Source="Expend_Colleps.png" Margin="0" Clicked="BTN_Ex_Col_Clicked" Aspect="AspectFit"
+                                     BackgroundColor="Transparent" Rotation="180"
+                                     HeightRequest="30" WidthRequest="30" VerticalOptions="CenterAndExpand" HorizontalOptions="End"/>
+                            </StackLayout>
+                        <BoxView HeightRequest="10" BackgroundColor="Transparent" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                        <StackLayout x:Name="ActionPanel" IsVisible="False" BackgroundColor="GhostWhite"
+                                     Padding="0,0,0,5" Margin="0"
+                                     HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="2" RowSpacing="2" >
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Button Grid.Row="0" Grid.Column="0"  Text="View Notifications" HorizontalOptions="FillAndExpand"/>
+                                <Button Grid.Row="0" Grid.Column="1" Text="eMB &amp; Inspection" HorizontalOptions="FillAndExpand"/>
+                                <Button  Grid.Row="1" Grid.Column="0" Text="ATR" IsEnabled="False" HorizontalOptions="FillAndExpand"/>
+                                <Button  Grid.Row="1" Grid.Column="1" Text="Hindrance Register" HorizontalOptions="FillAndExpand"/>
+                            </Grid>
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
             </Grid>
         </StackLayout>
     </ContentPage.Content>

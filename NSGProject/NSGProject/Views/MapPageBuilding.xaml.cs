@@ -1,4 +1,5 @@
-﻿using Esri.ArcGISRuntime.Geometry;
+﻿using Esri.ArcGISRuntime.Data;
+using Esri.ArcGISRuntime.Geometry;
 using Esri.ArcGISRuntime.Symbology;
 using Esri.ArcGISRuntime.UI;
 using Esri.ArcGISRuntime.Xamarin.Forms;
@@ -20,6 +21,7 @@ namespace NSGProject.Views
     public partial class MapPageBuilding : ContentPage
     {
         public AssignedWorks workitem { get; set; }
+        private GraphicsOverlay overlay { get; set; }
 
         public MapPageBuilding()
         {
@@ -31,7 +33,7 @@ namespace NSGProject.Views
         private async void Initialize()
         {
             // Create overlay to where graphics are shown
-            GraphicsOverlay overlay = new GraphicsOverlay();
+            overlay = new GraphicsOverlay();
 
             // Add created overlay to the MapView
             MapView.GraphicsOverlays.Add(overlay);
@@ -39,6 +41,31 @@ namespace NSGProject.Views
             // Add graphics using different source types
             // CreatePictureMarkerSymbolFromUrl(overlay);
             await CreatePictureMarkerSymbolFromResources(overlay);
+
+            MapView.GeoViewTapped += MapView_GeoViewTapped;
+
+        }
+
+        private async void MapView_GeoViewTapped(object sender, GeoViewInputEventArgs e)
+        {
+            //await CreatePictureMarkerSymbolFromResources(overlay);
+            IdentifyGraphicsOverlayResult identifyResults = await MapView.IdentifyGraphicsOverlayAsync(
+                    overlay,
+                    e.Position,
+                    10,
+                    false,
+                    1);
+            if (identifyResults.Graphics.Count() > 0)
+            {
+                identifyResults.Graphics[0].IsSelected = !identifyResults.Graphics[0].IsSelected;
+                if (identifyResults.Graphics[0].IsSelected)
+                {
+                    var mPage = new EMB_InspectionActivityPage { };
+                    await Navigation.PushModalAsync(new NavigationPage(mPage));
+                    mPage.InitializePage(workitem);
+                }
+                // if (identifyResults.Graphics[0].IsSelected) await Navigation.PushAsync(new NavigationPage(new EMB_InspectionActivityPage()));// await Navigation.PushModalAsync(new NavigationPage(new AboutPage()));
+            }
 
         }
 
@@ -53,18 +80,10 @@ namespace NSGProject.Views
             currentAssembly = Assembly.GetExecutingAssembly();
 #endif
 
-            var xxA = currentAssembly.GetManifestResourceNames();
-            // var assembly = typeof(EmbeddedImages).GetTypeInfo().Assembly;
-            foreach (var res in currentAssembly.GetManifestResourceNames())
-            {
-                System.Diagnostics.Debug.WriteLine("found resource: " + res);
-                //if()
-            }
+            var imgsource = currentAssembly.GetManifestResourceNames();
             // Get image as a stream from the resources
             // Picture is defined as EmbeddedResource and DoNotCopy
-            var resourceStream = currentAssembly.GetManifestResourceStream("pin_star_blue.png");
-            // StreamImageSource imgsource = new StreamImageSource();
-            //Stream stream = "pin_star_blue.png";
+            var resourceStream = currentAssembly.GetManifestResourceStream(imgsource[0]);// "pin_star_blue.png");
 
             // Create new symbol using asynchronous factory method from stream
             PictureMarkerSymbol pinSymbol = await PictureMarkerSymbol.CreateAsync(resourceStream);
@@ -72,7 +91,7 @@ namespace NSGProject.Views
             pinSymbol.Width = 50;
 
             // Create location for the pint
-            MapPoint pinPoint = new MapPoint(-226773, 6550477, SpatialReferences.WebMercator);
+            MapPoint pinPoint = new MapPoint(8619529.22253879, 2660417.48642509, SpatialReferences.WebMercator);
 
             // Create graphic with the location and symbol
             Graphic pinGraphic = new Graphic(pinPoint, pinSymbol);
@@ -88,12 +107,17 @@ namespace NSGProject.Views
             txtWorkName.Text = workitem.WorkName;
             txtM_S.Text = workitem.M_S;
             txtFBPInfo.Text = $"Fin. P: {workitem.Fin}% | BoQ P: {workitem.BoQ}% | Phy. P: {workitem.Phy}%";
-
         }
 
-        private void Button_Clicked(object sender, EventArgs e)
+        //private void Button_Clicked(object sender, EventArgs e)
+        //{
+        //    Navigation.PushAsync(new NavigationPage(new AboutPage()));
+        //}
+
+        private void BTN_Ex_Col_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new NavigationPage(new AboutPage()));
+            BTN_Ex_Col.Rotation = BTN_Ex_Col.Rotation == 0 ? 180 : 0;
+            ActionPanel.IsVisible = BTN_Ex_Col.Rotation == 0 ? true : false;
         }
     }
 }

@@ -10,11 +10,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Images\pin_star_blue.png" />
+    <None Remove="Images\pin_Building.png" />
+    <None Remove="Images\pin_star_blue1.png" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Images\pin_star_blue.png" />
+    <EmbeddedResource Include="Images\pin_Building.png" />
+    <EmbeddedResource Include="Images\pin_star_blue1.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -24,6 +26,12 @@
 
   <ItemGroup>
     <EmbeddedResource Update="Views\AssignedWorkListView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\EMBInspection_Building.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\EMB_InspectionActivityPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\MainMenuPage.xaml">

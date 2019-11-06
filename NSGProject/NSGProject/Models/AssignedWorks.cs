@@ -25,6 +25,8 @@ namespace NSGProject.Models
                 OnPropertyChanged("FBPInfo");
             }
         }
+        public string AssetName { get; set; }
+        public float Weightage { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged(string propertyName)
