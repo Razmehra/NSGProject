@@ -6172,6 +6172,9 @@ namespace NSGProject.Droid
 			// aapt resource value: 0x7f0b0012
 			public const int CardView_Light = 2131427346;
 			
+			// aapt resource value: 0x7f0b0196
+			public const int CustomTextAppearanceTab = 2131427734;
+			
 			// aapt resource value: 0x7f0b0193
 			public const int MainTheme = 2131427731;
 			

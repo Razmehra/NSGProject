@@ -1,14 +1,50 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="NSGProject.Views.NotificationTabbedPage">
+             x:Class="NSGProject.Views.NotificationTabbedPage"
+             NavigationPage.HasNavigationBar="True"
+             NavigationPage.HasBackButton="True"
+             BackgroundColor="GhostWhite">
     <NavigationPage.TitleView >
-        <StackLayout Orientation="Vertical" HorizontalOptions="Fill">
-            
-        </StackLayout>
+            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+                             Padding="0" Margin="0" BackgroundColor="Transparent">
+                <Frame BackgroundColor="GhostWhite" Padding="5" CornerRadius="10" HasShadow="True" BorderColor="Black">
+                    <Grid VerticalOptions="FillAndExpand" RowSpacing="0" Padding="0" Margin="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="50" />
+                        </Grid.ColumnDefinitions>
+                        <Label Text="Work Order :" Grid.Row="0" Grid.Column="0" TextColor="Black" FontSize="10" VerticalOptions="CenterAndExpand"/>
+                        <Label x:Name="txtWorkOrder"  Text="{Binding WorkOrder}" Grid.Row="0" Grid.Column="1" TextColor="Black" FontSize="10" VerticalOptions="CenterAndExpand"/>
+                        <Label Text="Work Name :" Grid.Row="1" Grid.Column="0" TextColor="Black" FontSize="10" VerticalOptions="CenterAndExpand"/>
+                        <Label x:Name="txtWorkName"  Text="{Binding WorkName}" Grid.Row="1" Grid.Column="1" TextColor="Black" FontSize="10" VerticalOptions="CenterAndExpand"/>
+                        <Label x:Name="txtFBPInfo" Text="{Binding FBPInfo}" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" TextColor="Black" FontSize="10" FontAttributes="Bold" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                    </Grid>
+                </Frame>
+            </StackLayout>
     </NavigationPage.TitleView>
+
     <!--Pages can be added as references or inline-->
-    <!--<ContentPage Title="Tab 1" />
-   <ContentPage Title="Tab 2" />
-   <ContentPage Title="Tab 3" />-->
+    <ContentPage x:Name="EMBNotificationView" Title="{Binding _eMBNotificationCount, StringFormat='eMB({0})'}" >
+        <StackLayout>
+            <ListView HasUnevenRows="True" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Label Text="{Binding Notification}"
+                                   FontSize="12" TextColor="Black" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" />
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage>
+   <ContentPage Title="Validate ATR" />
+   <ContentPage Title="Validate Hindrance" />
 </TabbedPage>

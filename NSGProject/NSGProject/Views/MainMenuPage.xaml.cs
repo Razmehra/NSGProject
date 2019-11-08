@@ -30,7 +30,7 @@ namespace NSGProject.Views
             switch (MenuID)
             {
                 case 1:
-                    await  Navigation.PushAsync(new NavigationPage(new AssignedWorkListView()) {  Title= "Assigned Work List" });
+                    await Navigation.PushAsync(new NavigationPage(new AssignedWorkListView()) { Title = "Assigned Work List" });
                     break;
                 case 2:
                     var mPage = new EMB_InspectionActivityPage { };
@@ -73,7 +73,7 @@ namespace NSGProject.Views
                     await Navigation.PushModalAsync(new NavigationPage(mPage3));
                     mPage3.InitializePage(new EMBInspactionDetailsModel()
                     {
-                        assignedWorks = new AssignedWorks { WorkID = 3, WorkOrder = 134, WorkName = "Construction of Bypass Road", M_S = "MS test1", Fin = 22, BoQ = 30, Phy = 30, WorkIndicator = 3, FBPInfo = "", AssetName = "Road", Weightage = 0  },
+                        assignedWorks = new AssignedWorks { WorkID = 3, WorkOrder = 134, WorkName = "Construction of Bypass Road", M_S = "MS test1", Fin = 22, BoQ = 30, Phy = 30, WorkIndicator = 3, FBPInfo = "", AssetName = "Road", Weightage = 0 },
                         ActivityID = 0,
                         ActivityName = "Earth Work",
                         BuildingID = "JP123412",
@@ -144,7 +144,7 @@ namespace NSGProject.Views
 
                     break;
                 case 8:
-                    await Navigation.PushModalAsync(new NavigationPage(new AOIPage() { Title="Select AoI"}));
+                    await Navigation.PushModalAsync(new NavigationPage(new AOIPage() { Title = "Select AoI" }));
                     break;
                 case 9:
                     await Navigation.PushModalAsync(new NavigationPage(new PendingSyncPage() { Title = "Pending Sync Work List" }));
@@ -155,6 +155,13 @@ namespace NSGProject.Views
 
                     break;
                 case 11:
+                    //var mPage6 = new NotificationTabbedPage { };
+                    //await Navigation.PushModalAsync(new NavigationPage(mPage6));
+                    //mPage6.InitializePage(new AssignedWorks { WorkID = 3, WorkOrder = 134, WorkName = "Construction of Bypass Road", M_S = "MS test1", Fin = 22, BoQ = 30, Phy = 30, WorkIndicator = 3, FBPInfo = "", AssetName = "Road", Weightage = 0 });
+                    NavigationPage xpage = new NavigationPage(new NotificationTabbedPage(new AssignedWorks { WorkID = 3, WorkOrder = 134, WorkName = "Construction of Bypass Road", M_S = "MS test1", Fin = 22, BoQ = 30, Phy = 30, WorkIndicator = 3, FBPInfo = "", AssetName = "Road", Weightage = 0 }));
+                    await Navigation.PushAsync(xpage);
+                    xpage.Title = "   Notifications List";
+
                     break;
                 case 12:
                     break;
