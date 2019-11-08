@@ -1,10 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="NSGProject.Views.EMB_InspectionActivityPage"
+             xmlns:esriUI="clr-namespace:Esri.ArcGISRuntime.Xamarin.Forms;assembly=Esri.ArcGISRuntime.Xamarin.Forms"
+             xmlns:local="clr-namespace:NSGProject.ViewModels"
+             x:Class="NSGProject.Views.MapPageRoad"
              NavigationPage.HasNavigationBar="False"
              NavigationPage.HasBackButton="False"
              BackgroundColor="GhostWhite">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:MapViewModel x:Key="MapViewModel" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
     <ContentPage.Content>
         <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
             <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
@@ -13,7 +22,6 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="Auto"/>
@@ -35,6 +43,7 @@
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="50" />
                             </Grid.ColumnDefinitions>
+
                             <Label Text="Work Order :" Grid.Row="0" Grid.Column="0" TextColor="Black" FontSize="12" VerticalOptions="CenterAndExpand"/>
                             <Label x:Name="txtWorkOrder" Text="{Binding workitem.WorkOrder}" Grid.Row="0" Grid.Column="1" TextColor="Black" FontSize="12" VerticalOptions="CenterAndExpand"/>
                             <Label Text="Work Name :" Grid.Row="1" Grid.Column="0" TextColor="Black" FontSize="12" VerticalOptions="CenterAndExpand"/>
@@ -45,65 +54,11 @@
                         </Grid>
                     </Frame>
                 </StackLayout>
-                <!--Work Heading Panel-->
-                <StackLayout Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
-                             HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
-                             Padding="5" Margin="0" BackgroundColor="LightGray"
-                             >
-                    <Frame BackgroundColor="GhostWhite" Padding="5" CornerRadius="10" HasShadow="True" BorderColor="Black">
-                        <Grid VerticalOptions="FillAndExpand" RowSpacing="2">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="50" />
-                            </Grid.ColumnDefinitions>
-                            <Label Text="eMB &amp; Inspection" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" FontAttributes="Bold" TextColor="Black" FontSize="15" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-                            <Label Text="Asset Name :" Grid.Row="1" Grid.Column="0" TextColor="Black" FontSize="12" VerticalOptions="CenterAndExpand"/>
-                            <Label x:Name="txtAssetName" Text="{Binding AssetName}" Grid.Row="1" Grid.Column="1" TextColor="Black" FontSize="12" VerticalOptions="CenterAndExpand"/>
-                            <Label Text="Weightage % :" Grid.Row="2" Grid.Column="0" TextColor="Black" FontSize="12" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand"/>
-                            <Label x:Name="txtWeightage" Text="{Binding Weightage}" Grid.Row="2" Grid.Column="1" TextColor="Black" FontSize="12" VerticalOptions="FillAndExpand"/>
-                        </Grid>
-                    </Frame>
-                </StackLayout>
-
-                <!--Activity Selection Panel-->
-                <StackLayout Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" 
-                             HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
-                             Padding="5" Margin="0" BackgroundColor="LightGray"
-                             >
-                    <Frame BackgroundColor="GhostWhite" Padding="50" CornerRadius="10" HasShadow="True" BorderColor="Black">
-                        <ListView x:Name="lstActivities" HasUnevenRows="True" SeparatorVisibility="Default">
-                            <ListView.Header>
-                                <StackLayout Margin="0,0,0,0" BackgroundColor="OrangeRed" HorizontalOptions="FillAndExpand">
-                                    <Label Text="Activities" TextColor="White" FontAttributes="Bold" FontSize="Small" HorizontalOptions="CenterAndExpand" />
-                                </StackLayout>
-                            </ListView.Header>
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <ViewCell>
-                                        <StackLayout Spacing="5">
-                                            <StackLayout Orientation="Horizontal" BackgroundColor="LightGray" Spacing="3" Margin="15,0,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
-                                                <Label Text="{Binding ActivityID,StringFormat=' {0}.'}"  TextColor="Black" FontSize="15" FontAttributes="Bold"  VerticalOptions="CenterAndExpand" HorizontalOptions="Start"/>
-                                                <Label Text="{Binding ActivityName}"  TextColor="Black" FontSize="15" FontAttributes="Bold" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand"/>
-                                            </StackLayout>
-                                            <!--<BoxView HeightRequest="2" BackgroundColor="Transparent"/>-->
-                                        </StackLayout>
-                                    </ViewCell>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
-                    </Frame>
-                </StackLayout>
-
-                <!--<esriUI:MapView x:Name="MapView" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"  Map="{Binding Map, Source={StaticResource MapViewModel}}" 
-                                        HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>-->
+                <!--Map Panel-->
+                <esriUI:MapView x:Name="MapView" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"  Map="{Binding Map, Source={StaticResource MapViewModel}}" 
+                                        HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
                 <!--Bottom Panel-->
-                <Frame Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+                <Frame Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
                        BorderColor="Black" CornerRadius="10" Padding="3,0,3,0" Margin="0,-5,0,-10" BackgroundColor="LightGray">
                     <StackLayout  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
                              BackgroundColor="Transparent" Spacing="0" Margin="0">
@@ -130,7 +85,7 @@
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 <Button Grid.Row="0" Grid.Column="0"  Text="View Notifications" HorizontalOptions="FillAndExpand"/>
-                                <Button Grid.Row="0" Grid.Column="1" Text="eMB &amp; Inspection" Clicked="EMBInspectionButton_Clicked" HorizontalOptions="FillAndExpand"/>
+                                <Button Grid.Row="0" Grid.Column="1" Text="eMB &amp; Inspection" HorizontalOptions="FillAndExpand"/>
                                 <Button  Grid.Row="1" Grid.Column="0" Text="ATR" IsEnabled="False" HorizontalOptions="FillAndExpand"/>
                                 <Button  Grid.Row="1" Grid.Column="1" Text="Hindrance Register" HorizontalOptions="FillAndExpand"/>
                             </Grid>

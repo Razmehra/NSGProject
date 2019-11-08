@@ -44,9 +44,18 @@ namespace NSGProject.Views
         private async void WorkListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             var selectedItem = (AssignedWorks)e.SelectedItem;
-            var mPage = new MapPageBuilding { };
-            await Navigation.PushModalAsync(new NavigationPage(mPage));
-            mPage.RefreshPage(selectedItem);
+            if (selectedItem.AssetName.Contains("Building"))
+            {
+                var mPage = new MapPageBuilding { };
+                await Navigation.PushModalAsync(new NavigationPage(mPage));
+                mPage.RefreshPage(selectedItem);
+            }
+            else
+            {
+                var mPage = new MapPageRoad { };
+                await Navigation.PushModalAsync(new NavigationPage(mPage));
+                mPage.RefreshPage(selectedItem);
+            }
         }
 
     }

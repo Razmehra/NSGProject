@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="NSGProject.Views.EMBInspection_Building"
+             x:Class="NSGProject.Views.ReviewEMBInspection_Building"
              NavigationPage.HasNavigationBar="False"
              NavigationPage.HasBackButton="False"
              BackgroundColor="GhostWhite">
@@ -108,12 +108,13 @@
                                         <Label BindingContext="{x:Reference pkrFloorNo}" Text="{Binding Path=SelectedItem}"
                                                TextColor="Black" FontSize="12" FontAttributes="Bold" IsEnabled="False"
                                                HorizontalTextAlignment="Center"
-                                               BackgroundColor="LightGray" WidthRequest="50"/>
+                                               BackgroundColor="LightGray" WidthRequest="50" HorizontalOptions="FillAndExpand"/>
                                         <ImageButton Source="Expend_Colleps.png" 
                                                  HeightRequest="20" WidthRequest="20"
                                                  Aspect="AspectFit" Clicked="OnFloorNoTappped"
                                                  BackgroundColor="Transparent"
                                                  BorderColor="Black" BorderWidth="2"
+                                                 HorizontalOptions="End"
                                                  />
                                     </StackLayout>
                                 </Frame>
@@ -130,26 +131,33 @@
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="30"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             <Label Text="Date of Measurment :" Grid.Row="0" Grid.Column="0"  TextColor="Black" FontSize="12" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand"/>
-                            <!--<Button x:Name="btnMeasurmentDate" Text="{Binding MeasurmentDate}"  Grid.Row="0" Grid.Column="1" TextColor="Black" FontSize="12" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"/>-->
-                            <DatePicker x:Name="DtPkrMeasurmentDate" Grid.Row="0" Grid.Column="1" 
+                            <StackLayout Orientation="Horizontal" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" HorizontalOptions="FillAndExpand">
+                                <DatePicker x:Name="DtPkrMeasurmentDate"  
                                         IsEnabled="False" TextColor="Black"
                                         FontSize="13" FontAttributes="Bold" 
-                                        Date="{Binding MeasurmentDate}"/>
-                            <ImageButton Grid.Row="0" Grid.Column="2" Source="Date.png" 
+                                        Date="{Binding MeasurmentDate}" HorizontalOptions="FillAndExpand"/>
+                                <ImageButton  Source="Date.png" 
                                          WidthRequest="25" HeightRequest="25" Aspect="AspectFit" BackgroundColor="Transparent"
                                          VerticalOptions="Center" HorizontalOptions="Start" 
                                          Clicked="MeasurmentDateTapped"/>
-
+                            </StackLayout>
                             <Label Grid.Row="1" Grid.Column="0"  Text="eMB Images :"   TextColor="Black" FontSize="12" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand"/>
-                            <ImageButton Grid.Row="1" Grid.Column="1" Source="cam2.png" WidthRequest="30" HeightRequest="30" Aspect="AspectFit" 
+                            <ImageButton Grid.Row="1" Grid.Column="1" Source="Eye1.png" BackgroundColor="Transparent" WidthRequest="25" HeightRequest="25" Aspect="AspectFit" 
+                                         VerticalOptions="Center" HorizontalOptions="Start"/>
+
+                            <ImageButton Grid.Row="1" Grid.Column="2" Source="cam2.png" WidthRequest="30" HeightRequest="30" Aspect="AspectFit" 
                                          VerticalOptions="Center" HorizontalOptions="Start"/>
 
                             <Label Grid.Row="2" Grid.Column="0" Text="eMB Remark :"  TextColor="Black" FontSize="12" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand"/>
-                            <Editor Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" 
+                            <ImageButton Grid.Row="2" Grid.Column="1" Source="info.png" WidthRequest="30" HeightRequest="30" Aspect="AspectFit" 
+                                         BackgroundColor="Transparent"
+                                         VerticalOptions="Center" HorizontalOptions="Start"/>
+
+                            <Editor Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" 
                                     Text="{Binding EMBRemark}"
                                     Placeholder="Enter  remark here.." PlaceholderColor="LightGray"
                                     BackgroundColor="LightGray"
@@ -175,13 +183,13 @@
                             </Grid.ColumnDefinitions>
 
                             <Label Text="Inspection As On Date :" Grid.Row="0" Grid.Column="0"  TextColor="Black" FontSize="12" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand"/>
-                            <Label Text="{Binding InspectionDate, StringFormat=' {0:dd/MM/yyyy}'}" Grid.Row="0" Grid.Column="1" FontAttributes="Bold"  TextColor="Black" FontSize="13" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand"/>
+                            <Label Text="{Binding InspectionDate, StringFormat=' {0:dd/MM/yyyy}'}" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" FontAttributes="Bold"  TextColor="Black" FontSize="13" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand"/>
                             <Label Text="Planned Area :" Grid.Row="1" Grid.Column="0"  TextColor="Black" FontSize="12" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand"/>
                             <Label Text="{Binding PlannedArea,StringFormat=' {0} sq.ft'}" Grid.Row="1" Grid.Column="1"  TextColor="Black" FontSize="12" FontAttributes="Bold" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand"/>
                             <Label Text="Completed Area :" Grid.Row="2" Grid.Column="0"  TextColor="Black" FontSize="12" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand"/>
                             <Entry Text="{Binding CompletedArea}" Grid.Row="2" Grid.Column="1"  TextColor="Black" FontSize="12" Keyboard="Numeric" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"/>
                             <Label Text="Inspection Status :" Grid.Row="3" Grid.Column="0"  TextColor="Black" FontSize="12" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand"/>
-                            <Frame Grid.Row="3" Grid.Column="1"  VerticalOptions="Fill" Padding="2"  Margin="0"  BorderColor="Black" >
+                            <Frame Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" WidthRequest="110" HorizontalOptions="StartAndExpand" VerticalOptions="Fill" Padding="2"  Margin="0"  BorderColor="Black" >
                                 <Frame.GestureRecognizers>
                                     <TapGestureRecognizer Tapped="OnInspectionStatusTapped"/>
                                 </Frame.GestureRecognizers>
@@ -209,16 +217,24 @@
                                 </StackLayout>
                             </Frame>
                             <Label Grid.Row="4" Grid.Column="0" Text="Inspection Remark :"  TextColor="Black" FontSize="12" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand"/>
-                            <Editor Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" 
-                                    Text="{Binding InspectionRemarks}"
+                            <StackLayout Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                <ImageButton  Source="info.png" WidthRequest="30" HeightRequest="30" Aspect="AspectFit"
+                                          BackgroundColor="Transparent"
+                                          VerticalOptions="Center" HorizontalOptions="Start"/>
+                                <Editor Text="{Binding InspectionRemarks}"
                                     Placeholder="Enter  remark here.." PlaceholderColor="LightGray"
                                     BackgroundColor="LightGray"
                                     HeightRequest="50" TextColor="Black" FontSize="12" 
                                     HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                            </StackLayout>
                             <Label Grid.Row="5" Grid.Column="0"  Text="Work Images :"   TextColor="Black" FontSize="12" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand"/>
-                            <ImageButton Grid.Row="5" Grid.Column="1" Source="cam2.png" WidthRequest="30" HeightRequest="30" Aspect="AspectFit" 
+                            <StackLayout Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                <ImageButton  Source="Eye1.png" WidthRequest="25" HeightRequest="25" Aspect="AspectFit" 
+                                              BackgroundColor="Transparent"
                                          VerticalOptions="Center" HorizontalOptions="Start"/>
-
+                                <ImageButton Source="cam2.png" WidthRequest="30" HeightRequest="30" Aspect="AspectFit" 
+                                         VerticalOptions="Center" HorizontalOptions="Start"/>
+                            </StackLayout>
                         </Grid>
 
 

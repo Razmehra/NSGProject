@@ -66,7 +66,7 @@
                                 <StackLayout.GestureRecognizers>
                                     <TapGestureRecognizer Tapped="BTN_Ex_Col_Clicked" />
                                 </StackLayout.GestureRecognizers>
-                                <Label Text="Action Items" TextColor="Black" FontSize="15" Margin="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                            <Label Text="Action Items" TextColor="Black" FontSize="15" FontAttributes="Bold" Margin="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
                                 <ImageButton x:Name="BTN_Ex_Col" Source="Expend_Colleps.png" Margin="0" Clicked="BTN_Ex_Col_Clicked" Aspect="AspectFit"
                                      BackgroundColor="Transparent" Rotation="180"
                                      HeightRequest="30" WidthRequest="30" VerticalOptions="CenterAndExpand" HorizontalOptions="End"/>

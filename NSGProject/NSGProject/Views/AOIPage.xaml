@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NSGProject.Views.AOIPage"
+             xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+             NavigationPage.HasNavigationBar="True"
+             NavigationPage.HasBackButton="False"
+             Title="Select AOI"
+             BackgroundColor="GhostWhite">
+    <ContentPage.Content>
+        <StackLayout Padding="0" VerticalOptions="FillAndExpand">
+                <ListView x:Name="lstAOI" HasUnevenRows="True" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand"
+                          SeparatorVisibility="None" RowHeight="50" Margin="50">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout>
+                                    <controls:CheckBox 
+                                       Checked="{Binding IsSelected}"
+                                       DefaultText="{Binding Title}"
+                                       FontSize="15"
+                                       HorizontalOptions="FillAndExpand"
+                                     />
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            <Button Text="Start Downloading " TextColor="FloralWhite" FontSize="15" FontAttributes="Bold" BackgroundColor="OrangeRed"
+                    CornerRadius="10" BorderColor="Black" BorderWidth="2"
+                    HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Clicked="Button_Clicked"/>
+        </StackLayout>
+
+    </ContentPage.Content>
+</ContentPage>

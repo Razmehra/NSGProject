@@ -1,10 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="NSGProject.Views.EMBInspection_Building"
+             x:Class="NSGProject.Views.EMBInspection_Road"
              NavigationPage.HasNavigationBar="False"
              NavigationPage.HasBackButton="False"
              BackgroundColor="GhostWhite">
+
     <ContentPage.Content>
         <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
             <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
@@ -62,8 +63,8 @@
                                 <ColumnDefinition Width="50" />
                             </Grid.ColumnDefinitions>
                             <Label Text="eMB &amp; Inspection" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" FontAttributes="Bold" TextColor="Black" FontSize="15" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-                            <Label Text="Building ID :" Grid.Row="1" Grid.Column="0" TextColor="Black" FontSize="12" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="End" VerticalOptions="CenterAndExpand"/>
-                            <Label x:Name="txtBuilding" Text="{Binding BuildingID}" Grid.Row="1" Grid.Column="1" TextColor="Black" FontSize="12" VerticalOptions="CenterAndExpand"/>
+                            <Label Text="Road ID :" Grid.Row="1" Grid.Column="0" TextColor="Black" FontSize="12" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="End" VerticalOptions="CenterAndExpand"/>
+                            <Label x:Name="txtRoadID" Text="{Binding RoadID}" Grid.Row="1" Grid.Column="1" TextColor="Black" FontSize="12" VerticalOptions="CenterAndExpand"/>
                             <Label Text="Indivisual Weightage % :" Grid.Row="2" Grid.Column="0" TextColor="Black" FontSize="12" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand"/>
                             <Label x:Name="txtWeightage" Text="{Binding IndivisualWeightage}" Grid.Row="2" Grid.Column="1" TextColor="Black" FontSize="12" VerticalOptions="FillAndExpand"/>
                         </Grid>
@@ -79,7 +80,6 @@
                             <Grid VerticalOptions="FillAndExpand" RowSpacing="2" HorizontalOptions="FillAndExpand">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto"/>
@@ -87,36 +87,6 @@
                                 </Grid.ColumnDefinitions>
                                 <Label Text="Activity Name :" Grid.Row="0" Grid.Column="0"  TextColor="Black" FontSize="12" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand"/>
                                 <Label x:Name="txtActivityName" Text="{Binding ActivityName}" Grid.Row="0" Grid.Column="1" TextColor="Black" FontSize="15" FontAttributes="Bold" VerticalOptions="CenterAndExpand"/>
-                                <Label Text="Floor No :" Grid.Row="1" Grid.Column="0" TextColor="Black" FontSize="12" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand"/>
-                                <Frame Grid.Row="1" Grid.Column="1"  VerticalOptions="Fill" Padding="2"  Margin="0"  BorderColor="Black" >
-                                    <Frame.GestureRecognizers>
-                                        <TapGestureRecognizer Tapped="OnFloorNoTappped"/>
-                                    </Frame.GestureRecognizers>
-                                    <StackLayout Orientation="Horizontal" Padding="0" Margin="0" Spacing="0">
-
-                                        <Picker x:Name="pkrFloorNo"  ItemsSource="{Binding FloorNoList}"  BackgroundColor="Red" FontSize="Micro" IsVisible="False">
-                                            <Picker.Items>
-                                                <x:String>1</x:String>
-                                                <x:String>2</x:String>
-                                                <x:String>3</x:String>
-                                                <x:String>4</x:String>
-                                                <x:String>5</x:String>
-                                                <x:String>6</x:String>
-                                                <x:String>7</x:String>
-                                            </Picker.Items>
-                                        </Picker>
-                                        <Label BindingContext="{x:Reference pkrFloorNo}" Text="{Binding Path=SelectedItem}"
-                                               TextColor="Black" FontSize="12" FontAttributes="Bold" IsEnabled="False"
-                                               HorizontalTextAlignment="Center"
-                                               BackgroundColor="LightGray" WidthRequest="50"/>
-                                        <ImageButton Source="Expend_Colleps.png" 
-                                                 HeightRequest="20" WidthRequest="20"
-                                                 Aspect="AspectFit" Clicked="OnFloorNoTappped"
-                                                 BackgroundColor="Transparent"
-                                                 BorderColor="Black" BorderWidth="2"
-                                                 />
-                                    </StackLayout>
-                                </Frame>
                             </Grid>
                         </StackLayout>
                     </StackLayout>
@@ -167,6 +137,7 @@
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"/>
@@ -176,12 +147,19 @@
 
                             <Label Text="Inspection As On Date :" Grid.Row="0" Grid.Column="0"  TextColor="Black" FontSize="12" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand"/>
                             <Label Text="{Binding InspectionDate, StringFormat=' {0:dd/MM/yyyy}'}" Grid.Row="0" Grid.Column="1" FontAttributes="Bold"  TextColor="Black" FontSize="13" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand"/>
-                            <Label Text="Planned Area :" Grid.Row="1" Grid.Column="0"  TextColor="Black" FontSize="12" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand"/>
-                            <Label Text="{Binding PlannedArea,StringFormat=' {0} sq.ft'}" Grid.Row="1" Grid.Column="1"  TextColor="Black" FontSize="12" FontAttributes="Bold" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand"/>
-                            <Label Text="Completed Area :" Grid.Row="2" Grid.Column="0"  TextColor="Black" FontSize="12" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand"/>
-                            <Entry Text="{Binding CompletedArea}" Grid.Row="2" Grid.Column="1"  TextColor="Black" FontSize="12" Keyboard="Numeric" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"/>
-                            <Label Text="Inspection Status :" Grid.Row="3" Grid.Column="0"  TextColor="Black" FontSize="12" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand"/>
-                            <Frame Grid.Row="3" Grid.Column="1"  VerticalOptions="Fill" Padding="2"  Margin="0"  BorderColor="Black" >
+                            <Label Text="Planned Length :" Grid.Row="1" Grid.Column="0"  TextColor="Black" FontSize="12" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand"/>
+                            <Label Text="{Binding PlannedLength,StringFormat=' {0} K.M.'}" Grid.Row="1" Grid.Column="1"  TextColor="Black" FontSize="12" FontAttributes="Bold" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand"/>
+
+                            <Label Text="Fetch Lat/Long :" Grid.Row="2" Grid.Column="0"  TextColor="Black" FontSize="12" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand"/>
+                            <ImageButton Grid.Row="2" Grid.Column="1" Source="MapMarker.png"  Aspect="AspectFit" 
+                                         WidthRequest="30" HeightRequest="30"
+                                         BackgroundColor="Transparent"
+                                         VerticalOptions="Center" HorizontalOptions="Start"/>
+
+                            <Label Text="Completed Length :" Grid.Row="3" Grid.Column="0"  TextColor="Black" FontSize="12" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand"/>
+                            <Entry Text="{Binding CompletedLength}" Grid.Row="3" Grid.Column="1"  TextColor="Black" FontSize="12" Keyboard="Numeric" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"/>
+                            <Label Text="Inspection Status :" Grid.Row="4" Grid.Column="0"  TextColor="Black" FontSize="12" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand"/>
+                            <Frame Grid.Row="4" Grid.Column="1"  VerticalOptions="Fill" Padding="2"  Margin="0"  BorderColor="Black" >
                                 <Frame.GestureRecognizers>
                                     <TapGestureRecognizer Tapped="OnInspectionStatusTapped"/>
                                 </Frame.GestureRecognizers>
@@ -208,15 +186,15 @@
                                                  />
                                 </StackLayout>
                             </Frame>
-                            <Label Grid.Row="4" Grid.Column="0" Text="Inspection Remark :"  TextColor="Black" FontSize="12" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand"/>
-                            <Editor Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" 
+                            <Label Grid.Row="5" Grid.Column="0" Text="Inspection Remark :"  TextColor="Black" FontSize="12" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand"/>
+                            <Editor Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" 
                                     Text="{Binding InspectionRemarks}"
                                     Placeholder="Enter  remark here.." PlaceholderColor="LightGray"
                                     BackgroundColor="LightGray"
                                     HeightRequest="50" TextColor="Black" FontSize="12" 
                                     HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
-                            <Label Grid.Row="5" Grid.Column="0"  Text="Work Images :"   TextColor="Black" FontSize="12" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand"/>
-                            <ImageButton Grid.Row="5" Grid.Column="1" Source="cam2.png" WidthRequest="30" HeightRequest="30" Aspect="AspectFit" 
+                            <Label Grid.Row="6" Grid.Column="0"  Text="Work Images :"   TextColor="Black" FontSize="12" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand"/>
+                            <ImageButton Grid.Row="6" Grid.Column="1" Source="cam2.png" WidthRequest="30" HeightRequest="30" Aspect="AspectFit" 
                                          VerticalOptions="Center" HorizontalOptions="Start"/>
 
                         </Grid>

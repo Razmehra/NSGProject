@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NSGProject.Views.PendingSyncPage"
+             NavigationPage.HasNavigationBar="True"
+             NavigationPage.HasBackButton="False"
+             Title="Pending Sync Work List"
+             BackgroundColor="GhostWhite">
+
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="FillAndExpand">
+            <Label x:Name="lblLastSyncDate" TextColor="Black" FontSize="15" FontAttributes="Bold"/>
+            <ScrollView HorizontalOptions="FillAndExpand">
+                <!--<StackLayout>-->
+                <ListView x:Name="LV_PendingSync" HorizontalOptions="FillAndExpand" HasUnevenRows="True" >
+                    <ListView.Header>
+                        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" BackgroundColor="Black">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="50"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Row="0" Grid.Column="0" Text="Sr.No" TextColor="White" FontSize="12" FontAttributes="Bold" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"/>
+                            <Label Grid.Row="0" Grid.Column="1" Text="Module" TextColor="White" FontSize="12" FontAttributes="Bold" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"/>
+                            <Label Grid.Row="0" Grid.Column="2" Text="Work ID" TextColor="White" FontSize="12" FontAttributes="Bold" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"/>
+                            <Label Grid.Row="0" Grid.Column="3" Text="Pending Since" TextColor="White" FontSize="12" FontAttributes="Bold" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"/>
+                        </Grid>
+                    </ListView.Header>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid HorizontalOptions="FillAndExpand">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="50"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Row="0" Grid.Column="0" Text="{Binding SrNo}" TextColor="Black" FontSize="12"  HorizontalOptions="Center" VerticalOptions="CenterAndExpand"/>
+                                    <Label Grid.Row="0" Grid.Column="1" Text="{Binding WorkModule}" TextColor="Black" FontSize="12"    HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand"/>
+                                    <Label Grid.Row="0" Grid.Column="2" Text="{Binding WorkID}" TextColor="Black" FontSize="12"  HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand"/>
+                                    <Label Grid.Row="0" Grid.Column="3" Text="{Binding PendingSince,StringFormat=' {0:dd/MM/yyyy HH:mm tt}'}" TextColor="Black" FontSize="12"  HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand"/>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <!--</StackLayout>-->
+            </ScrollView>
+            <Button Text="Start Syncing " TextColor="FloralWhite" FontSize="15" FontAttributes="Bold" BackgroundColor="OrangeRed"
+                    CornerRadius="10" BorderColor="Black" BorderWidth="2"
+                    HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Clicked="Button_Clicked"/>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

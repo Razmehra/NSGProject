@@ -6,7 +6,6 @@ using Esri.ArcGISRuntime.Xamarin.Forms;
 using NSGProject.Models;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -17,15 +16,15 @@ using Xamarin.Forms.Xaml;
 
 namespace NSGProject.Views
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MapPageBuilding : ContentPage
-    {
+	[XamlCompilation(XamlCompilationOptions.Compile)]
+	public partial class MapPageRoad : ContentPage
+	{
         public AssignedWorks workitem { get; set; }
         private GraphicsOverlay overlay { get; set; }
 
-        public MapPageBuilding()
-        {
-            InitializeComponent();
+        public MapPageRoad ()
+		{
+			InitializeComponent ();
             Initialize();
 
         }
@@ -83,7 +82,7 @@ namespace NSGProject.Views
             var imgsource = currentAssembly.GetManifestResourceNames();
             // Get image as a stream from the resources
             // Picture is defined as EmbeddedResource and DoNotCopy
-            var resourceStream = currentAssembly.GetManifestResourceStream(imgsource[0]);// "pin_star_blue.png");
+            var resourceStream = currentAssembly.GetManifestResourceStream(imgsource[1]);// "pin_star_blue.png");
 
             // Create new symbol using asynchronous factory method from stream
             PictureMarkerSymbol pinSymbol = await PictureMarkerSymbol.CreateAsync(resourceStream);
@@ -113,5 +112,6 @@ namespace NSGProject.Views
             BTN_Ex_Col.Rotation = BTN_Ex_Col.Rotation == 0 ? 180 : 0;
             ActionPanel.IsVisible = BTN_Ex_Col.Rotation == 0 ? true : false;
         }
+
     }
 }

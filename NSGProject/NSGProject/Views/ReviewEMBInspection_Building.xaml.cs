@@ -10,21 +10,20 @@ using Xamarin.Forms.Xaml;
 
 namespace NSGProject.Views
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class EMBInspection_Building : ContentPage
-    {
+	[XamlCompilation(XamlCompilationOptions.Compile)]
+	public partial class ReviewEMBInspection_Building : ContentPage
+	{
         private AssignedWorks works { get; set; }
         public EMBInspactionDetailsModel eMBInspaction { get; set; }
-        public EMBInspection_Building()
-        {
-            InitializeComponent();
-            //this.BindingContext = eMBInspaction;//.assignedWorks.WorkOrder;
-           //var xx = eMBInspaction.ActivityName;
-        }
 
-        public void InitializePage(EMBInspactionDetailsModel inspectionDetails=null)
+        public ReviewEMBInspection_Building ()
+		{
+			InitializeComponent ();
+		}
+
+        public void InitializePage(EMBInspactionDetailsModel inspectionDetails = null)
         {
-            works =  inspectionDetails.assignedWorks;
+            works = inspectionDetails.assignedWorks;
             eMBInspaction = inspectionDetails;
             // InitializeComponent();
             this.BindingContext = eMBInspaction;//.assignedWorks.WorkOrder;
@@ -44,7 +43,6 @@ namespace NSGProject.Views
 
         private void OnInspectionStatusTapped(object sender, EventArgs e)
         {
-            // ((Picker)sender).Focus();
             pkrInspectionStatus.Focus();
         }
         private void OnPickerClicked(object sender, EventArgs e)
@@ -56,5 +54,7 @@ namespace NSGProject.Views
         {
             DtPkrMeasurmentDate.Focus();
         }
+
+
     }
 }

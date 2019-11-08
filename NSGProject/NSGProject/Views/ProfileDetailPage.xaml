@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NSGProject.Views.ProfileDetailPage"
+             NavigationPage.HasNavigationBar="True"
+             NavigationPage.HasBackButton="False"
+             Title="Profile Details"
+             BackgroundColor="GhostWhite">
+
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Padding="5" Margin="0" BackgroundColor="LightGray">
+                <Frame BackgroundColor="GhostWhite" Padding="5" CornerRadius="10">
+                    <Grid  RowSpacing="2" HorizontalOptions="FillAndExpand">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Frame Grid.Row="0" Grid.Column="0" Grid.RowSpan="5" IsClippedToBounds="False" CornerRadius="10" Padding="0">
+                            <Image HeightRequest="150" WidthRequest="150"
+                                   Margin="0"
+                               Source="raz1.jpg" Aspect="Fill"
+                                
+                               />
+                        </Frame>
+                        <Label Text="First Name :" Grid.Row="0" Grid.Column="1" TextColor="Black" FontSize="12" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand"/>
+                        <Label    Text="{Binding FirstName}" Grid.Row="0" Grid.Column="2" TextColor="Black" FontSize="12" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand"/>
+                        <Label    Text="Surname :" Grid.Row="1" Grid.Column="1" TextColor="Black" FontSize="12" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand"/>
+                        <Label    Text="{Binding Surname}" Grid.Row="1" Grid.Column="2" TextColor="Black" FontSize="12" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand"/>
+                        <Label   Text="Phone No :" Grid.Row="2" Grid.Column="1" TextColor="Black" FontSize="12" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand"/>
+                        <Label    Text="{Binding PhoneNo}" Grid.Row="2" Grid.Column="2" TextColor="Black" FontSize="12" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand"/>
+                        <Label   Text="Mobile No :" Grid.Row="3" Grid.Column="1" TextColor="Black" FontSize="12" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand"/>
+                        <Label    Text="{Binding MobileNo}" Grid.Row="3" Grid.Column="2" TextColor="Black" FontSize="12" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand"/>
+                        <Label   Text="District :" Grid.Row="4" Grid.Column="1" TextColor="Black" FontSize="12" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand"/>
+                        <Label    Text="{Binding District}" Grid.Row="4" Grid.Column="2" TextColor="Black" FontSize="12" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand"/>
+                        <Label   Text="Address :" Grid.Row="5" Grid.Column="1" TextColor="Black" FontSize="12" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand"/>
+                        <Label    Text="{Binding Address}" Grid.Row="5" Grid.Column="2" TextColor="Black" FontSize="12" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand"/>
+                    </Grid>
+                </Frame>
+               
+                <Label Text="Official Information"  TextColor="Black" FontSize="15" FontAttributes="Bold" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="CenterAndExpand"/>
+
+                <Frame BackgroundColor="GhostWhite" Padding="5" CornerRadius="10">
+                    <Grid VerticalOptions="FillAndExpand" RowSpacing="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Text="Regular" Grid.Row="0" Grid.Column="1" TextColor="Black" FontAttributes="Bold" FontSize="13" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                        <Label Text="Additional" Grid.Row="0" Grid.Column="2" TextColor="Black" FontAttributes="Bold" FontSize="13" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                        <Label Text="Designation :" Grid.Row="1" Grid.Column="0" TextColor="Black" FontAttributes="Bold" FontSize="13" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand"/>
+                        <Label Text="{Binding Designation}" Grid.Row="1" Grid.Column="1" TextColor="Black" FontSize="12" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                        <Label Text="{Binding Designation_Additional}" Grid.Row="1" Grid.Column="2" TextColor="Black" FontSize="12" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+
+                        <Label Text="JEN Chowki :" Grid.Row="2" Grid.Column="0" TextColor="Black" FontAttributes="Bold" FontSize="13" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand"/>
+                        <Label Text="{Binding JENChowki}" Grid.Row="2" Grid.Column="1" TextColor="Black" FontSize="12" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                        <Label Text="{Binding JENChowki_Additional}" Grid.Row="2" Grid.Column="2" TextColor="Black" FontSize="12" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+
+                        <Label Text="Sub-Division :" Grid.Row="3" Grid.Column="0" TextColor="Black" FontAttributes="Bold" FontSize="13" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand"/>
+                        <Label Text="{Binding SubDivision}" Grid.Row="3" Grid.Column="1" TextColor="Black" FontSize="12" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                        <Label Text="{Binding SubDivision_Additional}" Grid.Row="3" Grid.Column="2" TextColor="Black" FontSize="12" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+
+                        <Label Text="Division :" Grid.Row="4" Grid.Column="0" TextColor="Black" FontAttributes="Bold" FontSize="13" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand"/>
+                        <Label Text="{Binding Division}" Grid.Row="4" Grid.Column="1" TextColor="Black" FontSize="12" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                        <Label Text="{Binding Division_Additional}" Grid.Row="4" Grid.Column="2" TextColor="Black" FontSize="12" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+
+                        <Label Text="Circle :" Grid.Row="5" Grid.Column="0" TextColor="Black" FontAttributes="Bold" FontSize="13" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand"/>
+                        <Label Text="{Binding Circle}" Grid.Row="5" Grid.Column="1" TextColor="Black" FontSize="12" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                        <Label Text="{Binding Circle_Additional}" Grid.Row="5" Grid.Column="2" TextColor="Black" FontSize="12" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                    </Grid>
+                </Frame>
+
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
