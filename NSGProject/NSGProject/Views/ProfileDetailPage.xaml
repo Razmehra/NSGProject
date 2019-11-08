@@ -13,22 +13,22 @@
                 <Frame BackgroundColor="GhostWhite" Padding="5" CornerRadius="10">
                     <Grid  RowSpacing="2" HorizontalOptions="FillAndExpand">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="25" />
+                            <RowDefinition Height="25" />
+                            <RowDefinition Height="25" />
+                            <RowDefinition Height="25" />
+                            <RowDefinition Height="25" />
+                            <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <Frame Grid.Row="0" Grid.Column="0" Grid.RowSpan="5" IsClippedToBounds="False" CornerRadius="10" Padding="0">
+                        <Frame Grid.Row="0" Grid.Column="0" Grid.RowSpan="6" IsClippedToBounds="True" CornerRadius="10" Padding="0">
                             <Image HeightRequest="150" WidthRequest="150"
                                    Margin="0"
-                               Source="raz1.jpg" Aspect="Fill"
+                               Source="raz1.jpg" Aspect="AspectFill"
                                 
                                />
                         </Frame>
@@ -46,7 +46,7 @@
                         <Label    Text="{Binding Address}" Grid.Row="5" Grid.Column="2" TextColor="Black" FontSize="12" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand"/>
                     </Grid>
                 </Frame>
-               
+
                 <Label Text="Official Information"  TextColor="Black" FontSize="15" FontAttributes="Bold" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="CenterAndExpand"/>
 
                 <Frame BackgroundColor="GhostWhite" Padding="5" CornerRadius="10">
