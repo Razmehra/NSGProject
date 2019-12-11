@@ -88,11 +88,11 @@
                                 <Label Text="Activity Name :" Grid.Row="0" Grid.Column="0"  TextColor="Black" FontSize="12" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand"/>
                                 <Label x:Name="txtActivityName" Text="{Binding ActivityName}" Grid.Row="0" Grid.Column="1" TextColor="Black" FontSize="15" FontAttributes="Bold" VerticalOptions="CenterAndExpand"/>
                                 <Label Text="Floor No :" Grid.Row="1" Grid.Column="0" TextColor="Black" FontSize="12" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand"/>
-                                <Frame Grid.Row="1" Grid.Column="1"  VerticalOptions="Fill" Padding="2"  Margin="0"  BorderColor="Black" >
+                                <Frame Grid.Row="1" Grid.Column="1"  VerticalOptions="Fill" Padding="2"  Margin="0"  BorderColor="Black" HorizontalOptions="Start">
                                     <Frame.GestureRecognizers>
                                         <TapGestureRecognizer Tapped="OnFloorNoTappped"/>
                                     </Frame.GestureRecognizers>
-                                    <StackLayout Orientation="Horizontal" Padding="0" Margin="0" Spacing="0">
+                                    <StackLayout Orientation="Horizontal" Padding="0" Margin="0" Spacing="0" >
 
                                         <Picker x:Name="pkrFloorNo"  ItemsSource="{Binding FloorNoList}"  BackgroundColor="Red" FontSize="Micro" IsVisible="False">
                                             <Picker.Items>
