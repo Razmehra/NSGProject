@@ -1,4 +1,5 @@
 ﻿using NSGProject.Models;
+using NSGProject.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
+[assembly:Dependency(typeof(ITestInterface))]
 namespace NSGProject.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
@@ -164,6 +166,9 @@ namespace NSGProject.Views
 
                     break;
                 case 12:
+
+                    DependencyService.Get<ITestInterface>().InvokeService();
+
                     break;
                 case 13:
                     break;

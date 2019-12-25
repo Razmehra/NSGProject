@@ -19,7 +19,7 @@ namespace NSGProject
 
             ArcGISRuntimeEnvironment.Initialize();
 
-            GetConnect();
+            //GetConnect();
             MainPage = new NavigationPage(  new MainPage());//new MainMenuPage();  //
         }
 
